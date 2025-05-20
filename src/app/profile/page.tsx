@@ -1,13 +1,13 @@
 import React from "react";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authConfig } from "@/lib/auth-config";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
 export default async function ProfilePage() {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authConfig);
 
   // Redirect to sign-in page if no session
   if (!session) {

@@ -1,11 +1,11 @@
 // src/app/api/memberships/[clubId]/route.js
 import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authConfig } from '@/lib/auth-config';
 import { NextResponse } from 'next/server';
 
 export async function GET(req, { params }) {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authConfig);
   if (!session || session.user.role !== 'ADMIN') {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
   }

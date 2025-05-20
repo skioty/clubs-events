@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authConfig } from '@/lib/auth-config';
 import { prisma } from '@/lib/prisma';
 
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(authConfig);
     console.log('[ADMIN USERS] Session:', session);
 
     if (!session) {
